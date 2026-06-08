@@ -26,8 +26,8 @@ export const getData= async ()=>{
         
     });
 
-    console.log(usefulData);
-    console.log(data);
+    // console.log(usefulData);
+    // console.log(data);
     // console.log(countryCur);
     return usefulData;
 

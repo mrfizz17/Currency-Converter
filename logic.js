@@ -5,7 +5,7 @@ import {getData,getData2} from "./data.js";
 
 // getData();
 let countryList = [];
-console.log("hello world");
+
 
 
  let fromParent;
@@ -87,8 +87,8 @@ function renderFlags(event){
     const selectedElem = event.target;
     const selectedValue = selectedElem.value;
 
-    console.log("Selected Value:", selectedValue);
-    console.log("Selected Element:", src);
+    // // console.log("Selected Value:", selectedValue);
+    // // console.log("Selected Element:", src);
     
 
     if(selectedElem.id === "from"){
@@ -136,8 +136,8 @@ async function convert(){
         fromCur = fromCur.toLowerCase();
         toCur = toCur.toLowerCase();
 
-        console.log("FROM CURRENCY:", fromCur);
-        console.log("TO CURRENCY:", toCur);
+        // console.log("FROM CURRENCY:", fromCur);
+        // console.log("TO CURRENCY:", toCur);
 
         const url =
                 `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${fromCur}.json`;
@@ -146,22 +146,11 @@ async function convert(){
             const data = await res.json();
             const result = data[fromCur][toCur]*amntval;
 
-        console.log(data);
-        console.log(result);
+        // console.log(data);
+        // console.log(result);
 
         document.querySelector(".show-msg").textContent = `${amntval} ${fromCur} = ${result.toFixed(2)} ${toCur}`;
         document.querySelector("#amount").value = "";
 
 }
 
-// // async function test() {
-// //   const url =
-// //     "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json";
-
-// //   const res = await fetch(url);
-// //   const data = await res.json();
-
-// //   console.log("WORKING TEST:", data);
-// // }
-
-// // test();
