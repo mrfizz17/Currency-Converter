@@ -9,6 +9,7 @@ A responsive currency converter built with JavaScript that allows users to conve
 ## Preview
 
 ![Currency Converter](assets/home.png)
+![Currency Converter](assets/result.png)
 
 ## Features
 
