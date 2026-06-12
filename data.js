@@ -1,60 +1,160 @@
-const countryApi= `https://restcountries.com/v3.1/all?fields=cca2,cca3,currencies,flags,name`;
-
-
-
-let countryCur=[];
-
-    let usefulData = [];
-
-export const getData= async ()=>{
-   const response = await fetch(countryApi);
-   let data = await response.json();
-
-    
-
-    data.forEach((country)=>{
-       if (!country.currencies) return;
-            usefulData.push({
-                Code: country.cca2,
-                Name:country.cca3,
-                img: country.flags.png,
-                currencies: Object.keys(country.currencies)[0]
-            });
-            countryCur.push(
-                { [country.cca2]: Object.keys(country.currencies)[0] }
-            );
-        
-    });
-
-    // console.log(usefulData);
-    // console.log(data);
-    // console.log(countryCur);
-    return usefulData;
-
-}
-
-export const getData2 = ()=>{
-    // console.log(countryCur);
-
-    return countryCur;
-}
-// getData2();
-
-
-
-
-
-
-// getData();
-
-// async function test() {
-//   const url =
-//     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/bdt.json";
-
-//   const res = await fetch(url);
-//   const data = await res.json();
-
-//   console.log("WORKING TEST:", data);
-// }
-
-// test();
+export const countryList = [
+  { currency: "AED", code: "AE" },
+  { currency: "AFN", code: "AF" },
+  { currency: "XCD", code: "AG" },
+  { currency: "ALL", code: "AL" },
+  { currency: "AMD", code: "AM" },
+  { currency: "ANG", code: "AN" },
+  { currency: "AOA", code: "AO" },
+  { currency: "AQD", code: "AQ" },
+  { currency: "ARS", code: "AR" },
+  { currency: "AUD", code: "AU" },
+  { currency: "AZN", code: "AZ" },
+  { currency: "BAM", code: "BA" },
+  { currency: "BBD", code: "BB" },
+  { currency: "BDT", code: "BD" },
+  { currency: "XOF", code: "BE" },
+  { currency: "BGN", code: "BG" },
+  { currency: "BHD", code: "BH" },
+  { currency: "BIF", code: "BI" },
+  { currency: "BMD", code: "BM" },
+  { currency: "BND", code: "BN" },
+  { currency: "BOB", code: "BO" },
+  { currency: "BRL", code: "BR" },
+  { currency: "BSD", code: "BS" },
+  { currency: "NOK", code: "BV" },
+  { currency: "BWP", code: "BW" },
+  { currency: "BYR", code: "BY" },
+  { currency: "BZD", code: "BZ" },
+  { currency: "CAD", code: "CA" },
+  { currency: "CDF", code: "CD" },
+  { currency: "XAF", code: "CF" },
+  { currency: "CHF", code: "CH" },
+  { currency: "CLP", code: "CL" },
+  { currency: "CNY", code: "CN" },
+  { currency: "COP", code: "CO" },
+  { currency: "CRC", code: "CR" },
+  { currency: "CUP", code: "CU" },
+  { currency: "CVE", code: "CV" },
+  { currency: "CYP", code: "CY" },
+  { currency: "CZK", code: "CZ" },
+  { currency: "DJF", code: "DJ" },
+  { currency: "DKK", code: "DK" },
+  { currency: "DOP", code: "DO" },
+  { currency: "DZD", code: "DZ" },
+  { currency: "ECS", code: "EC" },
+  { currency: "EEK", code: "EE" },
+  { currency: "EGP", code: "EG" },
+  { currency: "ETB", code: "ET" },
+  { currency: "EUR", code: "FR" },
+  { currency: "FJD", code: "FJ" },
+  { currency: "FKP", code: "FK" },
+  { currency: "GBP", code: "GB" },
+  { currency: "GEL", code: "GE" },
+  { currency: "GHS", code: "GH" },
+  { currency: "GIP", code: "GI" },
+  { currency: "GMD", code: "GM" },
+  { currency: "GNF", code: "GN" },
+  { currency: "GTQ", code: "GT" },
+  { currency: "GYD", code: "GY" },
+  { currency: "HKD", code: "HK" },
+  { currency: "HNL", code: "HN" },
+  { currency: "HRK", code: "HR" },
+  { currency: "HTG", code: "HT" },
+  { currency: "HUF", code: "HU" },
+  { currency: "IDR", code: "ID" },
+  { currency: "ILS", code: "IL" },
+  { currency: "INR", code: "IN" },
+  { currency: "IQD", code: "IQ" },
+  { currency: "IRR", code: "IR" },
+  { currency: "ISK", code: "IS" },
+  { currency: "JMD", code: "JM" },
+  { currency: "JOD", code: "JO" },
+  { currency: "JPY", code: "JP" },
+  { currency: "KES", code: "KE" },
+  { currency: "KGS", code: "KG" },
+  { currency: "KHR", code: "KH" },
+  { currency: "KMF", code: "KM" },
+  { currency: "KPW", code: "KP" },
+  { currency: "KRW", code: "KR" },
+  { currency: "KWD", code: "KW" },
+  { currency: "KYD", code: "KY" },
+  { currency: "KZT", code: "KZ" },
+  { currency: "LAK", code: "LA" },
+  { currency: "LBP", code: "LB" },
+  { currency: "LKR", code: "LK" },
+  { currency: "LRD", code: "LR" },
+  { currency: "LSL", code: "LS" },
+  { currency: "LTL", code: "LT" },
+  { currency: "LVL", code: "LV" },
+  { currency: "LYD", code: "LY" },
+  { currency: "MAD", code: "MA" },
+  { currency: "MDL", code: "MD" },
+  { currency: "MGA", code: "MG" },
+  { currency: "MKD", code: "MK" },
+  { currency: "MMK", code: "MM" },
+  { currency: "MNT", code: "MN" },
+  { currency: "MOP", code: "MO" },
+  { currency: "MRO", code: "MR" },
+  { currency: "MTL", code: "MT" },
+  { currency: "MUR", code: "MU" },
+  { currency: "MVR", code: "MV" },
+  { currency: "MWK", code: "MW" },
+  { currency: "MXN", code: "MX" },
+  { currency: "MYR", code: "MY" },
+  { currency: "MZN", code: "MZ" },
+  { currency: "NAD", code: "NA" },
+  { currency: "XPF", code: "NC" },
+  { currency: "NGN", code: "NG" },
+  { currency: "NIO", code: "NI" },
+  { currency: "NPR", code: "NP" },
+  { currency: "NZD", code: "NZ" },
+  { currency: "OMR", code: "OM" },
+  { currency: "PAB", code: "PA" },
+  { currency: "PEN", code: "PE" },
+  { currency: "PGK", code: "PG" },
+  { currency: "PHP", code: "PH" },
+  { currency: "PKR", code: "PK" },
+  { currency: "PLN", code: "PL" },
+  { currency: "PYG", code: "PY" },
+  { currency: "QAR", code: "QA" },
+  { currency: "RON", code: "RO" },
+  { currency: "RSD", code: "RS" },
+  { currency: "RUB", code: "RU" },
+  { currency: "RWF", code: "RW" },
+  { currency: "SAR", code: "SA" },
+  { currency: "SBD", code: "SB" },
+  { currency: "SCR", code: "SC" },
+  { currency: "SDG", code: "SD" },
+  { currency: "SEK", code: "SE" },
+  { currency: "SGD", code: "SG" },
+  { currency: "SKK", code: "SK" },
+  { currency: "SLL", code: "SL" },
+  { currency: "SOS", code: "SO" },
+  { currency: "SRD", code: "SR" },
+  { currency: "STD", code: "ST" },
+  { currency: "SVC", code: "SV" },
+  { currency: "SYP", code: "SY" },
+  { currency: "SZL", code: "SZ" },
+  { currency: "THB", code: "TH" },
+  { currency: "TJS", code: "TJ" },
+  { currency: "TMT", code: "TM" },
+  { currency: "TND", code: "TN" },
+  { currency: "TOP", code: "TO" },
+  { currency: "TRY", code: "TR" },
+  { currency: "TTD", code: "TT" },
+  { currency: "TWD", code: "TW" },
+  { currency: "TZS", code: "TZ" },
+  { currency: "UAH", code: "UA" },
+  { currency: "UGX", code: "UG" },
+  { currency: "USD", code: "US" },
+  { currency: "UYU", code: "UY" },
+  { currency: "UZS", code: "UZ" },
+  { currency: "VEF", code: "VE" },
+  { currency: "VND", code: "VN" },
+  { currency: "VUV", code: "VU" },
+  { currency: "YER", code: "YE" },
+  { currency: "ZAR", code: "ZA" },
+  { currency: "ZMK", code: "ZM" },
+  { currency: "ZWD", code: "ZW" },
+];

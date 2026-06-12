@@ -1,37 +1,26 @@
+import {countryList} from './data.js';
 
+const  init = ()=> {
 
-
-import {getData,getData2} from "./data.js";
-
-// getData();
-let countryList = [];
-
-
-
- let fromParent;
- let toParent;
-
-const  init = async ()=> {
-    countryList= await getData();
 
     countryList.forEach((country)=>{
         
         const li1 = document.createElement("option");
-        li1.value = country.Code;
-        li1.textContent = country.Name;
+        li1.value = country.code;
+        li1.textContent = country.code;
 
         const li2 = document.createElement("option");
-        li2.value = country.Code;
-        li2.textContent = country.Name;
+        li2.value = country.code;
+        li2.textContent = country.code;
 
 
-        fromParent =document.querySelector("#from");
-        toParent = document.querySelector("#to");
+        let fromParent =document.querySelector("#from");
+        let toParent = document.querySelector("#to");
         
 
-        if(country.Code === "US"){
+        if(country.code === "US"){
             li1.selected = true;
-        }else if(country.Code === "BD"){
+        }else if(country.code === "BD"){
             li2.selected = true;
         }
 
@@ -54,7 +43,7 @@ const  init = async ()=> {
     document.querySelector('.convert-btn').addEventListener("click",()=>{
         convert();
 
-        // document.querySelector(".show-msg").textContent = `${amntval} ${from} = ${result.toFixed(2)} ${to}`;  
+       
     });
 
 
@@ -73,22 +62,18 @@ const  init = async ()=> {
 }
 init();
 
-
 function renderFlags(event){
 
     let src ;
 
-    countryList.forEach((country)=>{
-        if(country.Code === event.target.value){
-            src = country.img;
-        }   
-    });
+    
 
     const selectedElem = event.target;
     const selectedValue = selectedElem.value;
 
-    // // console.log("Selected Value:", selectedValue);
-    // // console.log("Selected Element:", src);
+    src=`https://flagsapi.com/${selectedValue}/flat/64.png`
+
+    
     
 
     if(selectedElem.id === "from"){
@@ -101,27 +86,23 @@ function renderFlags(event){
 
 
 }
-
-
 async function convert(){
         const from = document.querySelector("#from").value;
         const to = document.querySelector("#to").value;
        
 
-        let convertData = getData2();
-
-        // console.log(convertData[88]['BD']);
+        
 
         let fromCur;
         let toCur;
 
-        convertData.forEach((item)=>{
-            if(item[from]){
-                fromCur = item[from];
-                // console.log("FROM CURRENCY:", fromCur);
-            } if(item[to]){
-                toCur = item[to];
-                // console.log("TO CURRENCY:", toCur);
+        countryList.forEach((item)=>{
+            if(item.code===from){
+                fromCur = item.currency;
+               
+            } if(item.code===to){
+                toCur = item.currency;
+                
             }
         });
 
@@ -136,8 +117,7 @@ async function convert(){
         fromCur = fromCur.toLowerCase();
         toCur = toCur.toLowerCase();
 
-        // console.log("FROM CURRENCY:", fromCur);
-        // console.log("TO CURRENCY:", toCur);
+        
 
         const url =
                 `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${fromCur}.json`;
@@ -146,8 +126,7 @@ async function convert(){
             const data = await res.json();
             const result = data[fromCur][toCur]*amntval;
 
-        // console.log(data);
-        // console.log(result);
+       
 
         document.querySelector(".show-msg").textContent = `${amntval} ${fromCur} = ${result.toFixed(2)} ${toCur}`;
         document.querySelector("#amount").value = "";
