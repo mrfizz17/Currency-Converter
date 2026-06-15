@@ -1,6 +1,6 @@
 # Currency Converter
 
-A responsive currency converter built with JavaScript that allows users to convert between international currencies using real-time exchange rates and country data from external APIs.
+A responsive currency converter built with JavaScript that allows users to convert between international currencies using real-time exchange rates and manually maintained country/currency data.
 
 ## Live Demo
 
@@ -25,7 +25,6 @@ A responsive currency converter built with JavaScript that allows users to conve
 * HTML5
 * CSS3
 * JavaScript (ES6 Modules)
-* REST Countries API
 * Currency Exchange API
 
 ## Project Structure
