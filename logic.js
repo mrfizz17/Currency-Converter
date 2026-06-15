@@ -7,11 +7,11 @@ const  init = ()=> {
         
         const li1 = document.createElement("option");
         li1.value = country.code;
-        li1.textContent = country.code;
+        li1.textContent = country.currency;
 
         const li2 = document.createElement("option");
         li2.value = country.code;
-        li2.textContent = country.code;
+        li2.textContent = country.currency;
 
 
         let fromParent =document.querySelector("#from");
